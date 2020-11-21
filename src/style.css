@@ -1,1 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+body {
+  width: 100vw;
+  height: 100vh;
+}
