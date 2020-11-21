@@ -1,0 +1,116 @@
+/* a thing is a flex column */
+.thing {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 80px;
+  width: 80px;
+  border: 2px solid black;
+  border-radius: 50%;
+  align-items: center;
+  background-color: orange;
+}
+/* a thing may be super sized */
+.thing.super {
+  height: 296px;
+  width: 296px;
+}
+/* there is a zone for eyes */
+.eyes {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  height: 50%;
+}
+/* there is a left and a right side of this zone */
+.left,
+.right {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+/* they may have an open eye */
+.open {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  border: 2px solid black;
+  background-color: white;
+}
+/* that has a pupil inside */
+.pupil {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+/* 
+    because the pupil div expands inside the open eye,
+    the pupil after is what is rendered and absolutely
+    position with regard of the pupil div.    
+*/
+.pupil::after {
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  content: " ";
+  background-color: black;
+  border-radius: 50%;
+  bottom: 30%;
+}
+/* positioning the left open eye */
+.left > .open {
+  bottom: 5%;
+  right: 5%;
+}
+/* positioning the left pupil */
+.left > .open > .pupil::after {
+  right: 30%;
+}
+/* positioning th right open eye */
+.right > .open {
+  bottom: 5%;
+  left: 5%;
+}
+/* positioning the right pupil*/
+.right > .open > .pupil::after {
+  left: 30%;
+}
+/* a thing has a mouth zone */
+.mouth {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 50%;
+}
+/* this mouth may have a smile inside */
+.mouth > .smile {
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+  border: solid black;
+  border-width: 2px 0 0 0;
+  overflow: hidden;
+}
+/*
+    the smile has an after positioned regarding the mouth
+    that allows to draw lower arc stroke.    
+*/
+.smile::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  border: 2px solid black;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-top-style: none;
+  transform: translate(0, -50%);
+  background-color: white;
+}
