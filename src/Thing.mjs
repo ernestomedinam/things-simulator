@@ -43,10 +43,10 @@ Thing.prototype.fallAsleep = function() {
     // if not already asleep...
     if (this.status != "asleep") {
         this.status = "asleep";
-        console.log(`\n- I'm going to bed.\n${this.name} falls fast asleep.`);
+        console.log(`- I'm going to bed.\n${this.name} falls fast asleep.\n`);
         // what if we wake our thing up in a certain
         // amount of time?
-        setTimeout(() => this.wakeUp(), 2000);
+        setTimeout(() => this.wakeUp(), Math.floor(Math.random() * 5000));
     }
 };
 Thing.prototype.wakeUp = function() {
@@ -56,7 +56,7 @@ Thing.prototype.wakeUp = function() {
         this.status = Math.floor(Math.random() * 2) == 0
             ? "happy"
             : "sad"
-        console.log(`\n${this.name} wakes up.\n- ${this.status == "happy" ? "Hello sunshine!" : "Oh, crap..."} -it says-.\n`);
+        console.log(`${this.name} wakes up.\n- ${this.status == "happy" ? "Hello sunshine!" : "Oh, crap..."} -it says-.\n`);
     }
 };
 
@@ -73,4 +73,9 @@ for (let name of names) {
         Math.floor(Math.random() * colors.length)
     ]);
     global.things.push(thing);
+}
+
+// let's take them to bed and see...
+for (let thing of global.things) {
+    thing.fallAsleep();
 }
