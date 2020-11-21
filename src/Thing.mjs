@@ -6,6 +6,8 @@
 */
 // run this code with nodeJS `$ node thing.js`
 
+import { getRandomCompliment } from "./utils.mjs";
+
 // what is a thing?
 /* 
     a thing is an instance of what a Thing is.
@@ -32,6 +34,8 @@ function Thing(name, color = "orange") {
     // ["asleep", "sad", "happy"]
     this.status = "happy";
     // thing has been 'constructed', let's return it
+    // after announcing it just spawned into life!
+    console.log(`${this.name} has just spawned with a ${getRandomCompliment()} ${this.color} color.\n`);
     return this;
 }
 // let's add some methods to our Thing prototype
@@ -56,9 +60,17 @@ Thing.prototype.wakeUp = function() {
     }
 };
 
-// now let's try to create a thing and console log it
-let thing = new Thing("homer");
-console.log(thing);
-
-// let's try to take our thing to bed
-thing.fallAsleep();
+// now let's try to create several things
+// for this we need some global object,
+// we may create a property on it. On nodeJS
+// 'this' will default to an emptyish global object.
+// On browsers it will default to the window object.
+global.things = [];
+let names = ["homer", "marge", "bart", "lisa", "maggie"];
+let colors = ["blue", "green", "orange", "yellow", "purple"];
+for (let name of names) {
+    let thing = new Thing(name, colors[
+        Math.floor(Math.random() * colors.length)
+    ]);
+    global.things.push(thing);
+}
