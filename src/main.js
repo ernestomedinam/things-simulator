@@ -5,7 +5,7 @@ import "./thing.css";
 import "./assets/img/4geeks.ico";
 
 import { createHomeView } from "./home";
-import { createThing } from "./thing";
+import { createThing } from "./things.js";
 
 document.onreadystatechange = function() {
   if (document.readyState == "interactive") {
