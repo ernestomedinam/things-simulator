@@ -40,6 +40,9 @@ Thing.prototype.fallAsleep = function() {
     if (this.status != "asleep") {
         this.status = "asleep";
         console.log(`\n- I'm going to bed.\n${this.name} falls fast asleep.`);
+        // what if we wake our thing up in a certain
+        // amount of time?
+        setTimeout(() => this.wakeUp(), 2000);
     }
 };
 Thing.prototype.wakeUp = function() {
@@ -59,6 +62,3 @@ console.log(thing);
 
 // let's try to take our thing to bed
 thing.fallAsleep();
-
-// let's wake it up!
-thing.wakeUp();
