@@ -15,50 +15,43 @@ import { getRandomCompliment } from "./utils.mjs";
     has properties that describe it.
     may act based on its methods.
 */
-function Thing(name, color = "orange") {
-    // so a thing must have a name, definately.
-    this.name = name;
-    // also it's color, default is orange.
-    this.color = color;
-    // a name wouldn't make it unique, but we
-    // could build a random string for that.
-    this.id = Math.random()
-    .toString(16)
-    .substr(2);
-    // a thing's position in space may be
-    // described by its coordinates, refering to
-    // top left corner of a box that contains it
-    this.x = 0;
-    this.y = 0;
-    // and then we suppose it also has a status
-    // ["asleep", "sad", "happy"]
-    this.status = "happy";
-    // thing has been 'constructed', let's return it
-    // after announcing it just spawned into life!
-    console.log(`${this.name} has just spawned with a ${getRandomCompliment()} ${this.color} color.\n`);
-    return this;
-}
-// let's add some methods to our Thing prototype
-Thing.prototype.fallAsleep = function() {
-    // if not already asleep...
-    if (this.status != "asleep") {
-        this.status = "asleep";
-        console.log(`- I'm going to bed.\n${this.name} falls fast asleep.\n`);
-        // what if we wake our thing up in a certain
-        // amount of time?
-        setTimeout(() => this.wakeUp(), Math.floor(Math.random() * 5000));
-    }
+// now we build Thing as a class
+class Thing {
+    constructor(name, color="orange") {
+        this.name = name;
+        this.color = color;
+        this.id = Math.random()
+            .toString(16)
+            .substr(2);
+        this.x = 0;
+        this.y = 0;
+        this.status = "happy";
+    };
+    fallAsleep() {
+        // if not already asleep...
+        if (this.status != "asleep") {
+            this.status = "asleep";
+            console.log(`- I'm going to bed.\n${this.name} falls fast asleep.\n`);
+            // what if we wake our thing up in a certain
+            // amount of time?
+            setTimeout(() => this.wakeUp(), Math.floor(Math.random() * 5000));
+        }
+    };
+    wakeUp() {
+        // if asleep...
+        if (this.status == "asleep") {
+            // 50% chance of waking up happy...
+            this.status = Math.floor(Math.random() * 2) == 0
+                ? "happy"
+                : "sad"
+            console.log(`${this.name} wakes up.\n- ${this.status == "happy" ? "Hello sunshine!" : "Oh, crap..."} -it says-.\n`);
+        }
+    };
 };
-Thing.prototype.wakeUp = function() {
-    // if asleep...
-    if (this.status == "asleep") {
-        // 50% chance of waking up happy...
-        this.status = Math.floor(Math.random() * 2) == 0
-            ? "happy"
-            : "sad"
-        console.log(`${this.name} wakes up.\n- ${this.status == "happy" ? "Hello sunshine!" : "Oh, crap..."} -it says-.\n`);
-    }
-};
+
+// following code works because, even though there is no
+// 'this' binding on the class functions, we are always
+// calling them from the object.
 
 // now let's try to create several things
 // for this we need some global object,
