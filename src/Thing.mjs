@@ -26,6 +26,10 @@ class Thing {
         this.x = 0;
         this.y = 0;
         this.status = "happy";
+        // and now let's solve the issue by binding
+        // 'this' to this instance of the class
+        this.fallAsleep = this.fallAsleep.bind(this);
+        this.wakeUp = this.wakeUp.bind(this);
     };
     fallAsleep() {
         // if not already asleep...
