@@ -53,6 +53,8 @@ class Thing {
 // 'this' binding on the class functions, we are always
 // calling them from the object.
 
+// let's make it fail...
+
 // now let's try to create several things
 // for this we need some global object,
 // we may create a property on it. On nodeJS
@@ -70,5 +72,7 @@ for (let name of names) {
 
 // let's take them to bed and see...
 for (let thing of global.things) {
-    thing.fallAsleep();
+    let putThingToSleep = thing.fallAsleep;
+    // thing.fallAsleep();
+    putThingToSleep();
 }
