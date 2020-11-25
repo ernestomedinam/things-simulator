@@ -26,7 +26,10 @@ body {
 .button:hover {
   cursor: pointer;
 }
-
+.primary {
+  background-color: blueviolet;
+  color: white;
+}
 .action {
   background-color: lightseagreen;
   color: white;
