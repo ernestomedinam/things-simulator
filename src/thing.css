@@ -114,3 +114,20 @@
   transform: translate(0, -50%);
   background-color: white;
 }
+.thing > .tooltip {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: auto;
+  padding: 0.25rem;
+  font-size: 1rem;
+  visibility: hidden;
+  background-color: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  transition: opacity linear 0.2 0.5s;
+}
+.thing:hover > .tooltip {
+  visibility: visible;
+  opacity: 1;
+  z-index: 3000;
+}
