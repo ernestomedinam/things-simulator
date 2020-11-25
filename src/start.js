@@ -25,15 +25,15 @@ const createButton = (name, classNames) => {
       refreshSimulator();
     });
   } else if (name == "sim spawn") {
-    button.addEventListener("click", e => {
-      handleSimulateSpawn(e);
+    button.addEventListener("click", async e => {
+      await handleSimulateSpawn(e);
       refreshSimulator();
     });
   }
   return button;
 };
 
-const handleSimulateSpawn = event => {
+const handleSimulateSpawn = async event => {
   // get ahold of the input to see if there is
   // a valid number of times for the simulation
   let input = document.querySelector("input");
@@ -48,13 +48,16 @@ const handleSimulateSpawn = event => {
           .prompt("How many random spawns would you like to simulate?")
           .trim()
       );
-      console.log(times, " ", !isNaN(times));
     } while (isNaN(times) || times == 0);
+  }
+  if (times > 6000) {
+    times = 6000;
   }
   for (let time = 0; time < times; time++) {
     // spawn a thing with a random color and a name
-    handleSpawn(event, `random thing #${time}`, getRandomColor());
+    await handleSpawn(event, `random thing #${time}`, getRandomColor());
   }
+  return true;
 };
 
 const handleSpawn = (event, name = "", color = "") => {
