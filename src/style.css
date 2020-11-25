@@ -12,3 +12,22 @@ body {
   justify-content: center;
   flex-flow: column nowrap;
 }
+.button {
+  background-color: gray;
+  border-radius: 0.5rem;
+  padding: 0.25rem 1rem;
+  margin: 0.5rem 1rem;
+}
+.button.super {
+  padding: 0.5rem 1.5rem;
+  margin: 1rem 1.5rem;
+  font-size: 2rem;
+}
+.button:hover {
+  cursor: pointer;
+}
+
+.action {
+  background-color: lightseagreen;
+  color: white;
+}

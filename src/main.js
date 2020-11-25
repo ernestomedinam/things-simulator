@@ -18,5 +18,14 @@ document.onreadystatechange = function() {
     thing.classList.add("super");
     app.insertBefore(thing, app.children[1]);
     document.body.style.visibility = "visible";
+    let button = document.createElement("button");
+    button.innerHTML = "start";
+    button.classList.add("button", "super", "action");
+    button.type = "button";
+    button.addEventListener("click", () => {
+      let app = document.querySelector("#app");
+      app.innerHTML = "welcome to the simulator";
+    });
+    app.insertBefore(button, app.children[2]);
   }
 };
