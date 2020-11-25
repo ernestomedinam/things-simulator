@@ -29,6 +29,11 @@ const createButton = (name, classNames) => {
       await handleSimulateSpawn(e);
       refreshSimulator();
     });
+  } else if (name == "clear sim") {
+    button.addEventListener("click", e => {
+      window.variables.things = [];
+      refreshSimulator();
+    });
   }
   return button;
 };
@@ -115,6 +120,8 @@ export const createDashboard = () => {
   dashboard.children[1].appendChild(spawn);
   let simulateSpawn = createButton("sim spawn", ["primary", "super"]);
   dashboard.children[1].appendChild(simulateSpawn);
+  let clearSimulator = createButton("clear sim", ["warning", "super"]);
+  dashboard.children[1].appendChild(clearSimulator);
   return dashboard;
 };
 
